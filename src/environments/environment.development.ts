@@ -3,4 +3,5 @@ export const environment = {
     // ASSIM PRA PEGAR OS MEMBROS ------------------X----------
     apiMembrosUrl: 'https://localhost:7121/api/auth/membros',
     apiUsersUrl: 'https://localhost:7121/api/auth/users',
+    apiLoginUrl: 'https://localhost:7121/api/auth/login',
 };
