@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { UserService } from '../../services/user-service';
+import { Observable } from 'rxjs';
+import { UserModel } from '../../models/userModel';
 
 @Component({
   selector: 'app-user',
@@ -6,4 +9,15 @@ import { Component } from '@angular/core';
   templateUrl: './user.html',
   styleUrl: './user.css',
 })
-export class User {}
+export class User {
+  private readonly userService = inject(UserService);
+  users$: Observable<UserModel[]> = this.userService.getUsers();
+
+  ngOnInit(): void {
+    this.users$.subscribe({
+      next: (dados) => {
+        console.log(dados);
+      }
+    });
+  }
+}

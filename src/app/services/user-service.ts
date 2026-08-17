@@ -8,7 +8,7 @@ import { UserModel } from '../models/userModel';
 })
 export class UserService {
   http = inject(HttpClient);
-  private readonly ApiUrl = environment.apiUrl;
+  private readonly ApiUrl = environment.apiUsersUrl;
 
 
   getUsers() {
