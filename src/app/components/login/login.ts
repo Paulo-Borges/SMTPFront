@@ -62,8 +62,8 @@ export class Login implements OnInit {
 
         // Salva o token recebido-----------------------------x------------------x----
          localStorage.setItem('token', token);
-
-        // this.router.navigate(['/dashboard']);
+         
+        this.router.navigate(['/welcome']);
       },
       error: (err) => {
         this.loading = false;
