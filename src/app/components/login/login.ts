@@ -55,10 +55,14 @@ export class Login implements OnInit {
     };
   
     this.loginService.login(credentials).subscribe({
-      next: (response) => {
+      next: (token: string) => {
         this.loading = false;
         // Exemplo: redireciona para a página principal após o login
-        console.log(response)
+        console.log(token)
+
+        // Salva o token recebido-----------------------------x------------------x----
+         localStorage.setItem('token', token);
+
         // this.router.navigate(['/dashboard']);
       },
       error: (err) => {
