@@ -1,0 +1,29 @@
+<p>criar-user works!!!!</p>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label class="flex flex-col">
+        <span>Nome</span>
+        <input formControlName="nome" type="text" class="border rounded p-2" />
+      </label>
+    
+      <label class="flex flex-col">
+        <span>E-mail</span>
+        <input formControlName="email" type="email" class="border rounded p-2" />
+      </label>
+    
+      <label class="flex flex-col">
+        <span>CPF (apenas números)</span>
+        <input formControlName="cpf" type="text" maxlength="11" class="border rounded p-2" />
+      </label>
+    
+      <button 
+        type="submit" 
+        class="bg-green-600 hover:bg-green-700 text-white p-2 rounded disabled:opacity-50">
+        Salvar
+      </button>
+
+    <button class="bg-amber-300 hover:bg-amber-600 mt-3 rounded text-amber-50 w-full" (click)="onVoltar()" type="button" >
+        Voltar
+    </button>
+</form>
+
