@@ -1,4 +1,22 @@
-<h2>CONECTADO!!!</h2>
-<button class="bg-amber-300 hover:bg-amber-600 mt-3 rounded text-amber-50 w-full" (click)="onSubmit()" type="button" >
-    Voltar
-</button>
+
+
+
+<main>
+    <h2>CONECTADO!!!</h2>
+
+    @if (userData) {
+        <div>
+            <p><strong>Nome:</strong> {{ userData.nome }}</p>
+            <p><strong>E-mail:</strong> {{ userData.email }}</p>
+            <p><strong>CPF:</strong> {{ userData.cpf }}</p>
+        </div>
+    }@else {
+        <p>Nenhum dado do usuário encontrado.</p>
+    }
+
+
+
+    <button class="bg-amber-300 hover:bg-amber-600 mt-3 rounded text-amber-50 w-full" (click)="onSubmit()" type="button" >
+        Voltar
+    </button>
+</main>
