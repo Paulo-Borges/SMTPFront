@@ -2,7 +2,7 @@ export interface EmailRequest {
     destinatarios: string[];
     assunto: string;
     corpo: string;
-    anexos?: string;
+    anexos?: string[];
 }
 
 export interface EmailResponse {
