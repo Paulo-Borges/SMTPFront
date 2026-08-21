@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -6,4 +6,36 @@ import { Component } from '@angular/core';
   templateUrl: './footer.html',
   styleUrl: './footer.css',
 })
-export class Footer {}
+export class Footer implements OnInit, OnDestroy {
+  currentTime = signal(new Date());
+  internalId: any;
+
+  formatTime(zone:string) {
+    return this.currentTime().toLocaleTimeString('pt-BR', {
+      timeZone : zone,
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    })
+  }
+
+  formatDate(zone:string) {
+    return this.currentTime().toLocaleDateString('pt-BR', {
+      timeZone : zone,
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    })
+  }
+
+  ngOnInit(): void {
+    this.internalId = setInterval(() => {
+      this.currentTime.set(new Date());
+    }, 1000)
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.internalId)
+  }
+  
+}
