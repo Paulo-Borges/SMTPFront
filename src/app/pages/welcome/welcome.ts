@@ -20,7 +20,7 @@ userData: UserPayload | null = null;
 
 
 onSubmit() {
-  this.router.navigate(['/home']);
+  this.router.navigate(['/enviar']);
 
 }
 

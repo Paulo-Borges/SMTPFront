@@ -1,1 +1,29 @@
-<p>user works!</p>
+@if (users$ | async; as users) {
+    <h2 class="font-semibold mt-8 underline">Users Salvos</h2>
+<table class="w-lg mt-6 ">
+    <thead class="border">
+        <tr >
+            <th class="items-start justify-start text-start px-2 border">Id</th>
+            <th class="items-start justify-start text-start px-2 border">Nome</th>
+            <th class="items-start justify-start text-start px-2 border">Email</th>
+            <th class="items-start justify-start text-start px-2 border">.....</th>
+        </tr>
+    </thead>
+    <tbody class=" p-3">
+        @for(user of users; track user.id) {
+            <tr >
+                <td class=" pr-3 border">{{ user.id }}</td>
+                <td class=" pr-3 border">{{ user.nome }}</td>
+                <td class=" pr-3 border">{{ user.email }}</td>
+                <td class=" pr-3 border">{{ user.id }}</td>
+            </tr>
+                }@empty {
+                <p>Nenhum membro encontrado.</p>
+                }
+
+
+
+        </tbody>
+    </table>
+
+}
