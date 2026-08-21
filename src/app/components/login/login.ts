@@ -18,14 +18,14 @@ export class Login implements OnInit {
   private readonly route = inject(ActivatedRoute);
 
 
-  constructor(private fb: FormBuilder, private emailService: EmailService) {}
+  // constructor(private fb: FormBuilder, private emailService: EmailService) {}
 
 
-  formulario!: FormGroup;
-  // enviando = false;
-  enviando = signal(false);
-  mensagemSucesso = signal('');
-  mensagemErro = signal("");
+  // formulario!: FormGroup;
+  // // enviando = false;
+  // enviando = signal(false);
+  // mensagemSucesso = signal('');
+  // mensagemErro = signal("");
 
 
 
@@ -38,8 +38,8 @@ export class Login implements OnInit {
 
   ngOnInit(): void {
 
-    this.inicializarFormulario();
-    this.verificarSaude();
+    // this.inicializarFormulario();
+    // this.verificarSaude();
 
     //   CÓDIGO SE FOR TESTAR MOCKADO  -------------------X----------------------X----------
   //  const credentials = { email: 'admin@email.com', password: '123456' };
@@ -53,74 +53,6 @@ export class Login implements OnInit {
   //   }
   // });
   }
-
-
-  private inicializarFormulario():void {
-    this.formulario = this.fb.group({
-      destinatarios: ['', [Validators.required, Validators.minLength(5)]],
-      assunto: ['', [Validators.required, Validators.minLength(5)]],
-      corpo: ['', [Validators.required, Validators.minLength(10)]]
-    });
-  }
-
-  private verificarSaude():void {
-    this.emailService.health().subscribe({
-      next: (response) => {
-        console.log('✅ Serviço de email está funcionando', response);
-      },
-      error: (error) => {
-        console.error('❌ Erro ao conectar com serviço de email', error);
-        this.mensagemErro.set('Serviço de email indisponível. Tente novamente mais tarde.');
-      }
-    });
-  }
-
-  onEmail():void {
-    if (this.formulario.invalid) {
-           alert('Por favor, preencha todos os campos corretamente.');
-           return;
-         }
-      
-        //  this.enviando = true;
-         this.enviando.set(true);
-         this.mensagemSucesso.set('');
-         this.mensagemErro.set('');
-        //  this.mensagemSucesso = '';
-        //  this.mensagemErro = '';
-      
-         // Parsear destinatários (separados por vírgula)
-         const destinatarios = this.formulario.value.destinatarios
-           .split(',')
-           .map((email: string) => email.trim());
-      
-         const request: EmailRequest = {
-           destinatarios: destinatarios,
-           assunto: this.formulario.value.assunto,
-           corpo: this.formulario.value.corpo,
-           anexos: []
-         };
-      
-         this.emailService.enviarEmail(request).subscribe({
-          next: (response) => {
-            this.enviando.set(false);
-    
-            if (response.sucesso) {
-              this.mensagemSucesso.set('✅ ' + response.mensagem);
-              this.formulario.reset();
-            } else {
-              this.mensagemErro.set('❌ Erro ao enviar email: ' + response.mensagem);
-            }
-          },
-          error: (error) => {
-            this.enviando.set(false);
-            this.mensagemErro.set(
-              '❌ Erro ao enviar email: ' + (error.error?.mensagem || error.message)
-            );
-            console.error('Erro detalhado:', error);
-          }
-        });
-  }
-
 
   isValid(): boolean {
     return this.email.includes('@') && this.password.length >= 3;
@@ -146,7 +78,7 @@ export class Login implements OnInit {
         // Salva o token recebido-----------------------------x------------------x----
          localStorage.setItem('token', token);
          
-        this.router.navigate(['/welcome']);
+        this.router.navigate(['/enviar']);
       },
       error: (err) => {
         this.loading = false;
@@ -155,11 +87,7 @@ export class Login implements OnInit {
       }
     });
   }
-  onReset(): void {
-    this.formulario.reset();
-    this.mensagemSucesso.set('');
-    this.mensagemErro.set('');
-  }
+  
 
 }
 
