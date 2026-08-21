@@ -4,4 +4,5 @@ export const environment = {
     apiMembrosUrl: 'https://localhost:7121/api/auth/membros',
     apiUsersUrl: 'https://localhost:7121/api/auth/users',
     apiLoginUrl: 'https://localhost:7121/api/auth/login',
+    apiEmailUrl: 'https://localhost:7121/api/email',
 };
